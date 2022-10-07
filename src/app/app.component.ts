@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   name = 'Nestor';
   age = 18;
+  img:string='https://source.unsplash.com/random';
 }
