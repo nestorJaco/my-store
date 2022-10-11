@@ -1,9 +1,44 @@
 <h1>Propiedades</h1>
-<button [disabled]="btnDisabled">Enviar</button>
-<input type="text" [value]="name" />
 <hr/>
 <h1>String interpolation</h1>
 <h2>{{ ' Hola mundo'.repeat(5) }}</h2>
 <p>3 + 3 = {{ 3 + 3 }}</p>
 <h3>Hola soy {{ name }} y tengo {{ age }}</h3>
 <img src = {{img}} width="200px" height="200px" alt="random image">
+<hr/>
+<h1>Property Binding</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<input type="text" [value]="person.name" />
+<progress max="100" [value]="person.age"></progress>
+<img width="100px" [src]="person.avatar">
+<hr/>
+<h1>Event (Binding) - "Evento click"</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<button (click)="toggleButton()">Toggle Button</button>
+<p>Edad {{ person.age }}</p>
+<button (click)="increaseAge()">Age ++</button>
+<div class="box" (scroll)="onScroll($event)">
+    <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
+</div>
+<input type="text" [value]="person.name" (keyup)="changeName($event)"/>
+<p>Nombre {{ person.name }}</p>
+<hr/>
+<h1>Data binding con ngModel</h1>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name"/>
+<p>Valid: {{ nameInput.valid }}</p>
+<input type="number" max = "18" min = "10"required #ageInput="ngModel" [(ngModel)]="person.age"/>
+<p>Valid: {{ ageInput.valid }}</p>
+<hr/>
+<h1>Uso de *ngIf</h1>
+<input type="text" required [(ngModel)]="person.name"/>
+<p *ngIf="person.name === 'nicolas' else elseBlock">Soy Nicolas</p>
+<p *ngIf="person.name === 'julian' && person.age === 18 else elseBlock">Soy Julian</p>
+<ng-template #elseBlock>
+    <p>Bloque de else</p>
+</ng-template>
+<hr/>
+<h1>Uso de *ngFor</h1>
+<ul>
+    <li *ngFor="let name of names"></li>
+    {{ name }}
+</ul>
